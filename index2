@@ -1,0 +1,82 @@
+// Simple Call back function
+
+let ab = (callback: any) => {
+  callback("Hellow world");
+};
+
+let cd = (val: any) => {
+  console.log(val);
+};
+
+ab(cd); // Invoke Function
+
+// include timings
+
+//1
+let makeAnda = (callback1: any) => {
+  setTimeout(() => {
+    callback1("Egg fried");
+  }, 2000);
+};
+
+let EggFried = (para: any) => {
+  console.log(para);
+};
+
+makeAnda(EggFried); //invoke Function
+
+//2
+let toastbread = (cb: any) => {
+  setTimeout(() => {
+    cb("Toast is done");
+  }, 3000);
+};
+
+let isDone = (para1: any) => {
+  console.log(para1);
+};
+
+toastbread(isDone); // invoke Function
+
+// CallBack hell
+
+let makeAnda_ = (callback1: any) => {
+  setTimeout(() => {
+    callback1("Egg fried");
+  }, 2000);
+};
+
+let toastbread_ = (cb: any) => {
+  setTimeout(() => {
+    cb("Toast is done");
+  }, 3000);
+};
+
+toastbread((val3: any) => {
+  // invoke Function
+  console.log(val3);
+  makeAnda((val2: any) => {
+    // invoke Function
+    console.log(val2);
+  });
+});
+
+// Promises
+function cricketMatch() {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let toss = "Pakistan";
+        if (toss == 'Australia') {
+         return resolve("Pakistan won the toss & Elected to bat first");
+        } else {
+          return reject("Opposite side won the toss & decided to bat first");
+        }
+      }, 2000);
+    });
+  }
+  
+  cricketMatch().then((result) => {
+    console.log(result); // Output: Pakistan won the toss & Elected to bat first
+  }).catch((error) => {
+    console.log(error);
+  });
